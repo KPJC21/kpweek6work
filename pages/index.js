@@ -13,16 +13,19 @@ export async function getStaticProps() {
   }
 }
 export default function Home({ allData }) {
-  return (
       <Layout home>
         <h1>List of Names</h1>
         <div className="list-group">
           {allData.map(({ id, name }) => (
-            <Link href={`/${id}`}>
+           return (
+           <Link href={`/${id}`}>
               <a className="list-group-item list-group-item-action">{name}</a>
             </Link>
-          ))}
+          )
+            
+           
+          )))}
         </div>
       </Layout>
-  );
+  
 }
