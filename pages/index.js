@@ -17,13 +17,15 @@ return (
 <Layout home>
 <h1>List of Names</h1>
 <div className="list-group">
-{allData.map((mydata) => (
+{allData ?
+  allData.map((mydata) => (
 
 <Link href={`/${mydata.id}`} key={mydata.id} >
 <a className="list-group-item list-group-item-action">{mydata.name}</a>
 </Link>
 
-))}
+))
+: null }
 </div>
 </Layout>
 );

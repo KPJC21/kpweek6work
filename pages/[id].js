@@ -23,6 +23,7 @@ export async function getStaticPaths() {
 export default function Entry({ itemData }) {
   return (
     <Layout>
+    {/* render details about one entity in persons.json saved in itemData*/}
       <article className="card col-6">
         <div className="card-body">
           <h5 className="card-title">{itemData.name}</h5>
@@ -39,3 +40,5 @@ export default function Entry({ itemData }) {
     </Layout>
   );
 }
+{/*render details about all other entities in persons.json related to id*/}
+{/* check for existence of itemData.related property*/}
