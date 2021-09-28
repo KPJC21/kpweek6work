@@ -1,9 +1,9 @@
 import Head from 'next/head';
 import Layout from '../components/layout';
-import { getAllIds, getData } from '../lib/data';
+import { getResourceIds, getResourceData } from '../lib/List';
 
 export async function getStaticProps({ params }) {
-  const itemData = await getData(params.id);
+  const itemData = await getResourceData(params.id);
   // console.log(itemData);
   return {
     props: {
@@ -13,7 +13,7 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  const paths = getAllIds();
+  const paths = await getResourceIds();
   return {
     paths,
     fallback: false
@@ -26,15 +26,10 @@ export default function Entry({ itemData }) {
     {/* render details about one entity in persons.json saved in itemData*/}
       <article className="card col-6">
         <div className="card-body">
-          <h5 className="card-title">{itemData.name}</h5>
-          <h6 className="card-subtitle mb-2 text-muted">{itemData.phone}</h6>
-          <p className="card-text">{itemData.birthdate}</p>
-          <a href={'mailto:' + itemData.email} className="card-link">{itemData.email}</a>
-          <h4 className="card col-7">{itemData.person2.name}</h4>
-          <h5 className="card-title">{itemData.person2.phone}</h5>
-          <p className="card-text">{itemData.person2.birthdate}</p>
-          <a href={'mailto:' + itemData.person2.email} className="card-link">{itemData.person2.email}</a>
-          <p className="card-text">A friend</p>
+          <h5 className="card-title">{itemData.data.name}</h5>
+          <h6 className="card-subtitle mb-2 text-muted">{itemData.data.description}</h6>
+          <p className="card-text">{itemData.data.nickname}</p>
+          <a href={ itemData.data.url} className="card-link">{itemData.data.url}</a>
         </div>
       </article>
     </Layout>
